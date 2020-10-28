@@ -33,14 +33,16 @@ def compile_JSONs_to_CSV(inFolder, outFile, *, debug = False, remove_followless 
                     int(manga["manga"]["rating"]["users"].replace(",", "")),
                     int(manga["manga"]["follows"]),
                     (lambda n: 0 if n == None else int(n))(manga["manga"]["comments"]),
-                    chapter_comments])
+                    chapter_comments,
+                    ("\"" + manga["manga"]["title"] + "\"").encode("unicode_escape")])
 
     acc.sort(key = lambda x: x[0])
 
     with open(outFile, "w") as f_out:
         f_out.write("id,views,mean_rating,bayesian_rating,ratings,")
-        f_out.write("follows,manga_comments,chapter_comments\n")
+        f_out.write("follows,manga_comments,chapter_comments,title\n")
 
         for i in acc:
+            i[8] = str(i[8])[3:-2]
             f_out.write(f"{','.join([str(j) for j in i])}\n")
 
