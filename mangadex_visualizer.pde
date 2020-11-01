@@ -129,9 +129,10 @@ void setup() {
   
   // -- Setup sliders
   
-  slider_vals = new float[2];
+  slider_vals = new float[3];
   slider_vals[0] = random(0., 1.);
   slider_vals[1] = random(0., 1.);
+  slider_vals[2] = -1;
   
   slider_positions = new int[2][4];
   // zgornji slider => ocena
@@ -139,11 +140,14 @@ void setup() {
   slider_positions[0][1] = canvasSize;
   slider_positions[0][2] = canvasSize;
   slider_positions[0][3] = sliderHeight;
-  // spodnji slider => logaritem komentarjev
+  // spodnji multislider => logaritem komentarjev
   slider_positions[1][0] = descriptionWidth;
   slider_positions[1][1] = canvasSize + sliderHeight;
   slider_positions[1][2] = canvasSize;
   slider_positions[1][3] = sliderHeight;
+  
+  prev_mouse_pressed = false;
+  prev_mouse_coords = new int[2];
   
   // -- Prepare static elements
   
@@ -168,7 +172,8 @@ void draw() {
   background(bg_color);
   draw_text_area(0, 0);
   // draw_horizontal_slider(0);
-  draw_horizontal_slider_rainbow_tag(0);
+  // draw_horizontal_slider_rainbow_tag(0);
+  draw_horizontal_multislider_rainbow_tags(0, 2);
   draw_horizontal_slider_exp_tag(1, minComments, maxComments);
   // draw_horizontal_slider(1);
   draw_horizontal_slider_exp_tag(1, minComments, maxComments);
@@ -182,7 +187,7 @@ void draw() {
   // follows_vs_comments_per_view_ranged(drawX, drawY, drawSize, drawSize, 0);
   // follows_vs_comments_per_view_ranged_r_c(drawX, drawY, drawSize, drawSize, 0, 1);
   // follows_vs_comments_per_view_ranged_rating_ratings(drawX, drawY, drawSize, drawSize, 0, 1);
-  follows_vs_ratings_per_view__rating_comments(drawX, drawY, drawSize, drawSize, 0, 1);
+  follows_vs_ratings_per_view__rating_comments(drawX, drawY, drawSize, drawSize, 0, 2, 1);
   
   manga_title_popup();
   

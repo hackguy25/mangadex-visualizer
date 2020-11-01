@@ -151,7 +151,8 @@ void follows_vs_comments_per_view_ranged_rating_ratings(int x, int y, int w, int
   }
 }
 
-void follows_vs_ratings_per_view__rating_comments(int x, int y, int w, int h, int rating_slider_idx, int num_ratings_slider_idx) {
+void follows_vs_ratings_per_view__rating_comments(int x, int y, int w, int h,
+  int rating_slider_idx1, int rating_slider_idx2, int num_ratings_slider_idx) {
   float rating_range = .3, comment_range = .6;
   noStroke();
   
@@ -159,9 +160,11 @@ void follows_vs_ratings_per_view__rating_comments(int x, int y, int w, int h, in
   rToClosest = Float.POSITIVE_INFINITY;
   
   for (int i = 0; i < st_podatkov; i++) {
-    float rr = mean[i] - 9*slider_vals[rating_slider_idx] - 0.5;
+    float rr1 = mean[i] - 9*slider_vals[rating_slider_idx1] - 0.5;
+    float rr2 = mean[i] - 9*slider_vals[rating_slider_idx2] - 0.5;
+    float rr = min(abs(rr1), abs(rr2));
     float rc = log_comments[i] - (maxComments - minComments) * slider_vals[num_ratings_slider_idx] + minComments;
-    if (abs(rr) < rating_range && abs(rc) < comment_range) {
+    if (rr < rating_range && abs(rc) < comment_range) {
       rr /= rating_range;
       rc /= comment_range;
       fill(colorFromRating(mean[i]));
