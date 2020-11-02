@@ -93,11 +93,11 @@ void prepare_text_area() {
   text_area.textFont(notoText);
   text_area.textLeading(text_area.textSize + 3);
   text_area.text(
-    "Ali dobra zgodba zaneti pogovor? Iz podatkov skoraj 25 tisoč stripov azijskega porekla s portala MangaDex " +
+    "Ali dobra zgodba pusti vtis? Iz podatkov o skoraj 25 tisoč stripih azijskega porekla s portala MangaDex " +
     "smo izluščili število število ogledov, komentarjev, oznak zanimanja in ocen, poleg tega pa še povprečno oceno vsakega " +
     "stripa.\n\nVsaka pika predstavlja strip, njena koordinata x razmerje med številom oznak zanimanja in ogledi, koordinata y pa " +
     "razmerje med številom ocen in ogledi. Barva pike predstavlja povprečno oceno stripa.\n\nZgornji drsnik nastavlja prikazano " +
-    "območje ocen, spodnji pa prikazano območje števila komentarjev.",
+    "območje ocen, s klikom lahko dodamo ali odstranimo dodatni drsnik. Spodnji drsnik nastavlja prikazano območje števila komentarjev.",
     textPad,
     logoPad + logoWidth*130/150 + textPad,
     descriptionWidth - 2*textPad,

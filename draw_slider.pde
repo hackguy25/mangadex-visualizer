@@ -156,7 +156,6 @@ void draw_horizontal_multislider_rainbow_tags(int idx1, int idx2) {
           if ((mouseX >= x+2*t) && (mouseX < x+w-2*t) && (mouseY >= y+2*t) && (mouseY < y+h-2*t)) {
             slider_vals[idx1] = constrain(map(mouseX, x+h/2, x+w-h/2, 0., 1.), 0., 1.);
             left_xpos = x + h/2 + slider_vals[idx1]*(w-h);
-            println("case 0");
           }
         } else {
           // only slider 2
@@ -165,14 +164,12 @@ void draw_horizontal_multislider_rainbow_tags(int idx1, int idx2) {
               // left of right slider => create left slider
               slider_vals[idx1] = constrain(map(min(mouseX, right_xpos - nj + 1), x+h/2, x+w-h/2, 0., 1.), 0., 1.);
               left_xpos = x + h/2 + slider_vals[idx1]*(w-h);
-              println("case 1");
             } else if (mouseX > right_xpos + nj / 2){
               // right of right slider => move right slider to left, create right slider
               slider_vals[idx1] = slider_vals[idx2];
               left_xpos = right_xpos;
               slider_vals[idx2] = constrain(map(max(mouseX, left_xpos + nj - 1), x+h/2, x+w-h/2, 0., 1.), 0., 1.);
               right_xpos = x + h/2 + slider_vals[idx2]*(w-h);
-              println("case 2");
             }
             // else: on right slider => do nothing
           }
@@ -187,12 +184,10 @@ void draw_horizontal_multislider_rainbow_tags(int idx1, int idx2) {
               right_xpos = left_xpos;
               slider_vals[idx1] = constrain(map(min(mouseX, right_xpos - nj + 1), x+h/2, x+w-h/2, 0., 1.), 0., 1.);
               left_xpos = x + h/2 + slider_vals[idx1]*(w-h);
-              println("case 3");
             } else if (mouseX > left_xpos + nj / 2){
               // right of left slider => create right slider
               slider_vals[idx2] = constrain(map(max(mouseX, left_xpos + nj - 1), x+h/2, x+w-h/2, 0., 1.), 0., 1.);
               right_xpos = x + h/2 + slider_vals[idx2]*(w-h);
-              println("case 4");
             }
             // else: on left slider => do nothing
           }
@@ -201,12 +196,10 @@ void draw_horizontal_multislider_rainbow_tags(int idx1, int idx2) {
           if (2 * dist(mouseX, mouseY, left_xpos, y + h/2) <= nj - 3*t) {
             // delete left slider
             slider_vals[idx1] = -1;
-            println("case 5");
           }
           if (2 * dist(mouseX, mouseY, right_xpos, y + h/2) <= nj - 3*t) {
             // delete right slider
             slider_vals[idx2] = -1;
-            println("case 6");
           }
         }
       }
